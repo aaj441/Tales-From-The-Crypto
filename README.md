@@ -1,4 +1,4 @@
-# Tales from th Crypto Universe
+# Tales from the Crypto Universe
 
 ## Overview
 
@@ -6,9 +6,226 @@ A vaporwave blockchain narrative universe where Pearl's neon bakery sits on a bl
 
 **Core Concept:** Tokenized reality meets kitchen noir with empathy-centered multicultural satire. Human stakes first; crypto metaphysics second.
 
+## KDP Iteration Guide
+
+**Automated KDP-Ready eBook Production Workflow**
+
+This repository now includes a complete automation workflow for producing Kindle Direct Publishing (KDP)-ready eBooks from the Tales From The Crypto manuscript. The workflow is designed for iterative improvement cycles where contributors and artists can continuously enhance content through multiple publishing iterations.
+
+### Quick Start for Contributors
+
+#### 1. Content Creation Workflow
+
+```bash
+# Clone the repository
+git clone [repository-url]
+cd Tales-From-The-Crypto
+
+# Create or edit chapter content
+# All chapters are in /chapters directory
+# Use clear section headers and image placeholders
+vim chapters/Episode-N-Title.md
+
+# Run the automated eBook generation
+./convert-ebook.sh
+
+# Review generated eBook
+open output/Tales-From-The-Crypto.epub
+```
+
+#### 2. Chapter Structure Guidelines
+
+All chapter files in `/chapters` should follow this template:
+
+```markdown
+# Chapter Title
+
+![Illustration Placeholder](../illustrations/chapter-opening.png)
+
+## Major Section Header
+
+*Content goes here*
+
+![Illustration Placeholder](../illustrations/section-diagram.png)
+
+## Another Section
+
+*More content*
+
+![Illustration Placeholder](../illustrations/section-conclusion.png)
+```
+
+### Quick Start for Artists
+
+#### 1. Illustration Workflow
+
+```bash
+# Create illustrations matching chapter placeholders
+# Save in /illustrations directory
+# Use descriptive, hyphenated filenames
+# Format: PNG or JPEG, 300 DPI, 1200px wide recommended
+
+# Update chapter files with actual image names
+# Replace placeholders like:
+![Illustration Placeholder](../illustrations/episode-1-opening.png)
+# With actual descriptions:
+![Pearl's neon bakery at night](../illustrations/episode-1-opening.png)
+
+# Test the complete workflow
+./convert-ebook.sh
+```
+
+#### 2. Asset Specifications
+
+- **Format**: PNG or JPEG
+- **Resolution**: 300 DPI minimum
+- **Dimensions**: 1200px wide (recommended)
+- **Color Mode**: RGB
+- **File Naming**: Descriptive, lowercase, hyphenated
+- **Alt Text**: Always include descriptive alt text for accessibility
+
+### KDP Publishing Iteration Loop
+
+The repository is designed for continuous improvement through iterative publishing cycles:
+
+```
+┌─────────────────────────────────────┐
+│  1. Update Content & Illustrations  │
+└──────────────┬──────────────────────┘
+               ▼
+┌─────────────────────────────────────┐
+│  2. Run ./convert-ebook.sh Script   │
+└──────────────┬──────────────────────┘
+               ▼
+┌─────────────────────────────────────┐
+│  3. Review Generated EPUB File      │
+└──────────────┬──────────────────────┘
+               ▼
+┌─────────────────────────────────────┐
+│  4. Upload to KDP (New/Update)      │
+└──────────────┬──────────────────────┘
+               ▼
+┌─────────────────────────────────────┐
+│  5. Gather Reader Feedback          │
+└──────────────┬──────────────────────┘
+               ▼
+┌─────────────────────────────────────┐
+│  6. Make Improvements & Iterate ←──┘
+└─────────────────────────────────────┘
+```
+
+### Step-by-Step KDP Instructions
+
+#### For First-Time Publishers
+
+1. **Generate Your eBook**
+   ```bash
+   ./convert-ebook.sh --all  # Creates both EPUB and MOBI
+   ```
+
+2. **Prepare for KDP**
+   - Generated file: `output/Tales-From-The-Crypto.epub`
+   - Create cover image (2560x1600px recommended)
+   - Prepare book description and keywords
+
+3. **Upload to KDP**
+   - Go to [kdp.amazon.com](https://kdp.amazon.com)
+   - Click "+ Create" → "eBook"
+   - Upload manuscript and cover
+   - Set pricing and publish
+
+4. **For Updates**
+   - Make content improvements
+   - Re-run `./convert-ebook.sh`
+   - Upload new version to existing KDP title
+
+#### Detailed Instructions
+
+See `/kdp-production/README.md` for comprehensive KDP formatting guidelines, illustration integration instructions, and complete publishing workflow documentation.
+
+### Automation Features
+
+#### The convert-ebook.sh Script Provides:
+
+- **Automatic Chapter Assembly**: Combines all `/chapters/*.md` files in order
+- **Image Processing**: Handles illustration references and paths
+- **Metadata Generation**: Creates proper eBook metadata
+- **Multiple Formats**: Generates EPUB and optionally MOBI
+- **KDP Optimization**: Output formatted for Kindle Direct Publishing
+- **Error Checking**: Validates dependencies and file structure
+
+#### Script Options:
+
+```bash
+./convert-ebook.sh           # Generate EPUB (default)
+./convert-ebook.sh --mobi    # Generate MOBI for Kindle
+./convert-ebook.sh --all     # Generate both formats
+./convert-ebook.sh --verbose # Show detailed output
+```
+
+### Version Control Strategy
+
+#### Git Workflow for Iterations
+
+```bash
+# Tag versions for each KDP publication
+git tag -a v1.0 -m "First KDP publication"
+git push origin v1.0
+
+# Use branches for different types of work
+git checkout -b content-updates    # For text changes
+git checkout -b illustrations      # For artist work
+git checkout -b kdp-v1.1          # For next publication
+
+# Commit with clear messages
+git commit -m "[CHAPTER] Enhanced Episode 2 dialogue"
+git commit -m "[ILLUST] Added blockchain diagram to Chapter 3"
+git commit -m "[KDP] Generated v1.1 for republication"
+```
+
+### Future Upgrades & Extensions
+
+The automation system is designed to support:
+
+- **Multi-language Editions**: Easy localization workflow
+- **Interactive Elements**: Enhanced EPUB3 features
+- **Print Editions**: PDF generation for print-on-demand
+- **Audiobook Integration**: Text-to-speech preparation
+- **Marketing Materials**: Automated excerpt generation
+- **Analytics Integration**: Sales and engagement tracking
+
+### Contributing to the KDP Workflow
+
+We welcome contributions to improve the automation process:
+
+- **Script Enhancements**: Improve the bash automation
+- **Template Updates**: Better chapter templates
+- **Documentation**: Clearer instructions
+- **Quality Assurance**: Testing and validation tools
+- **Integration**: Connect with other publishing platforms
+
+### Support & Troubleshooting
+
+#### Common Issues:
+
+- **Missing Dependencies**: Install Pandoc and Calibre
+- **Image Path Errors**: Check illustration file names
+- **Format Problems**: Validate Markdown syntax
+- **KDP Rejection**: Review formatting guidelines
+
+#### Getting Help:
+
+- Check `/kdp-production/README.md` for detailed instructions
+- Review script output with `--verbose` flag
+- Submit issues on GitHub for technical problems
+- Join Discord for community support
+
+---
+
 ## Integration Strategy
 
 ### Community Engagement Mechanics
+
 - **Discord Voting**: Real-time community polls that influence narrative direction
 - **Tip-to-Canon**: QR tip bucket integration that triggers story transformations
 - **Meme Inputs**: #MintMyMeme contests where winners become menu items and visuals
@@ -16,6 +233,7 @@ A vaporwave blockchain narrative universe where Pearl's neon bakery sits on a bl
 - **Accessibility First**: Alt text for AR, flicker-safe visuals, content warnings, opt-in consent gates
 
 ### Core Rules of Reality
+
 1. **Tokenized Reality**: Food, memories, emotions can be minted with explicit and auditable consent
 2. **Smart Contract Consequences**: Gas drains vitality; bugs manifest physically; burns scar AR-space
 3. **Metaverse Bleed**: DAOs run civic life; Discord drama changes traffic and prices; AR UI overlays all
@@ -42,6 +260,7 @@ A vaporwave blockchain narrative universe where Pearl's neon bakery sits on a bl
 | **Glitchweaver** | Visual/UI distortion | Accessibility and chaos | LUTs, AR layers, alt data |
 
 ### Key Locations
+
 - **Pearl's Bakery**: QR menus, neon oven error logs
 - **Jayz's Discord HQ**: Meme-lit basement
 - **Sofia's Startup**: EXIT SCAM loop
@@ -55,192 +274,6 @@ A vaporwave blockchain narrative universe where Pearl's neon bakery sits on a bl
 | 1 | Casserole on the Chain | Pearl's recipe NFT flips physics; gods cold-open; bakery AR goes feral |
 | 2 | DAO of the Dead | Viral governance bug; votes mint zombies; bureaucracy loops satire |
 | 3 | Gas Fees from Hell | Purchases drain life; prophecy receipts; musical minor chords on charge |
-| 4 | Altcoin Shuffle | Menu shuffles with coins; teleporting pastries; meme contest special |
-| 5 | Lost in the Mempool | Pending limbo; time dilation; ghost cat NFT |
-| 6 | Discord at Dawn | Server meltdown made physical; proof-of-mod; emoji infestation |
-| 7 | Rugpull Reunion | Confession contract; trauma pies; burned-hash loaves |
-| 8 | Neighborhood Watch DAO | Surveillance pastries; porchlight NFTs default; disco blackout |
-| 9 | Oracle of Burn Wallets | Cupcake doom forecasts; self-fulfilling prophecies |
-| 10 | Zero Confirmation | Global pending; AR vaporwave convergence; myth reboot |
-
-## Devil's Advocate Prompts
-
-### Prompt Hooks for Each God
-- **Storyteller**: Patch a plot hole with a meme law—what breaks next?
-- **Muse**: Upload a 10s surge loop; genre mash encouraged
-- **Architect**: Patch or exploit Proof-of-Taste?
-- **Mythmaker**: Two-sentence myth that disproves itself
-- **Trickster**: Spin the meme wheel to swap ingredients/motives
-- **Sage**: Pick your proverb NFT
-- **Chronos**: Which cause comes last?
-- **Spatialis**: Map the bakery to a maze—what swaps with the alley?
-- **Connector**: #recipe-fork: pineapple (ETH) vs beans (DOGE)
-- **Alchemist**: Transmute a tip into flavor, show side effects
-- **Oracle**: Forecast, then let chaos choose
-- **Glitchweaver**: Submit vaporwave GIF/filter to skin windows
-
-### Standard God Output Envelope
-```json
-{
-  "role": "GOD",
-  "intent": "string",
-  "inputs": {...},
-  "rules": [...],
-  "proposals": [...],
-  "risks": [...],
-  "variant_advocate": {...}
-}
-```
-
-## Scenario Prototypes
-
-### Ready-to-Run Kinesthetic Prompts
-- **Architect Challenge**: Proof-of-Taste Paradox: "Submit 3 lines of Python/Solidity to save the batch." (croissants perfect-but-data, IF/THEN oven)
-- **Glitchweaver Challenge**: Zero-Confirmation Slicer: "Post vaporwave GIF/AR filter; winner skins bakery windows." (mesh ↔ pixel-sprite flicker)
-- **Connector Challenge**: Tipping the Oracle Out of Limbo: "Vote in #recipe-fork: pineapple (ETH) vs beans (DOGE)." (vibrating QR bucket, neon sign lists channels)
-
-### Time Ledger Highlights
-
-| Year | Canon Event | Blurb |
-|------|-------------|--------|
-| 2025 | Rug Wave | Meme coin collapses bankrupt city; DAO movements spark resistance |
-| 2027 | DAO of the Dead | Viral governance contract turns bureaucracy into zombies |
-| 2029 | Token Merge | Blockchain merges with energy grid; gas fees drain actual life |
-| 2030 | Memeconomy | Everything is tokenized; nothing is sacred |
-| 2032 | Oracle Fork | Predictive coins threaten fate itself; everyone runs from prophecy |
-
-## Technical Implementation
-
-### Event Loop (per scene)
-1. **Connector** ingests on-chain/Discord events
-2. **Oracle** proposes 3 futures (+confidence)
-3. **Trickster** injects bounded RNG; seed logged
-4. **Architect** checks invariants and tests; suggests patch/exploit
-5. **Glitchweaver** prepares AR/LUT with accessibility
-6. **Muse** updates motifs; **Storyteller** recomposes beats
-7. **Alchemist** applies transformations; **Spatialis** updates staging
-8. **Sage** adds koans; **Mythmaker** writes contradicting legend
-9. **Storyteller** stamps canon; **Lore Ledger** writes; assets versioned
-
-### Variables → Outputs Table
-
-| Inputs | Outputs |
-|--------|----------|
-| Energy (gas fees) | Visual (AR overlays) |
-| Emotion (token) | Narrative (beat) |
-| Decision (vote) | Interactive (unlock/lock) |
-| Noise (volatility) | Audio (motif) |
-| Consent (flag) | Economy (price, tip) |
-
-### Pseudocode Snippets
-
-**Proof-of-Taste:**
-```solidity
-require(skillSigVerified[taster], "skill fail");
-bytes32 h = keccak256(abi.encode(recipeId, block.prevrandao));
-bool ok = (uint(h) % 97) > 0;
-emit Tasted(recipeId, taster, ok);
-```
-
-**Mint-of-Soul:**
-```solidity
-if consent && intent && witness >= 2:
-  soulNFT.mint(subject, traits.hash())
-else:
-  revert("no-consent")
-```
-
-**Zero-Confirmation Slicer:**
-State machine: PENDING→FORKED|GHOSTED|CONFIRMED; timeout doubles; Trickster p=0.13 to FORKED.
-
-### Lore Ledger Schema (Single Source-of-Truth)
-
-| Field | Purpose |
-|-------|----------|
-| id | Unique identifier |
-| episode | Story capsule number |
-| timestamp | Event time |
-| god | Agent name |
-| rule_id | Governing rule |
-| input_hash | Cryptographic summary |
-| output_uri | Pointer to asset/lore |
-| votes | Poll results |
-| confidence | Forecast bands |
-| rng_seed_hash | Random event seed |
-| outcome | Result of intervention |
-| canon_status | draft, proposed, or canon |
-| accessibility_notes | Compliance and AR info |
-
-**Status Flow:** draft → playtest → proposed-canon → canon → archived
-
-**Write Protocol:** Only Storyteller marks canon after Architect invariants pass, Oracle risks acknowledged, and Connector logs outcome.
-
-### Visual/Music Pipeline
-
-**Color Palette:**
-- Neon Pink: #FF00B8
-- Electric Cyan: #00FFF9
-- Midnight Blue: #110040
-- Glitch Green: #54FF97
-
-**Music:** Adaptive lo-fi hyperpop; minor detune on fees; steel drum stem for pineapple win
-
-**UI/AR:** QR mosaics, floating transaction bubbles, Discord overlays, exported LUTs + filter CSS + alt text
-
-## Collaboration Guide
-
-### For Contributors
-
-#### Getting Started
-1. Join the Discord server for real-time collaboration
-2. Review the **Lore Ledger** for current canon status
-3. Choose a **God** role that matches your skills
-4. Follow the **Event Loop** for scene contributions
-
-#### Content Guidelines
-- **Accessibility First**: Include alt text, content warnings, and consent mechanisms
-- **Community-Driven**: All major narrative decisions go through Discord voting
-- **Empathy-Centered**: Satirize systems, not people; prioritize human stakes
-- **Technically Grounded**: Smart contract logic must be reviewable and testable
-
-#### Safety & Moderation Protocols
-- Profanity/malware filters
-- Bias checks on AI outputs
-- Replayable seeds for reproducibility
-- Mod thresholds and appeals process
-- Content warnings for sensitive material
-
-### For Perplexity Integration
-
-#### Usage Instructions
-- Treat **Lore Ledger** as ground truth database; write to it on every intervention
-- Use **God Output Envelopes** to format responses in JSON-first syntax
-- Follow **Event Loop** for scene progression and canonization
-- Pull audience engagement hooks from community mechanics
-- Adhere to accessibility, safety, and seed logging protocols
-
-#### Goal
-A live, extensible canon—Perplexity co-authors the myth, entry by entry, ledger by loaf.
-
-### Development Roadmap
-
-#### Phase 1: Foundation (Current)
-- [x] Core narrative framework
-- [x] God system architecture
-- [x] Lore Ledger schema
-- [x] Community engagement design
-
-#### Phase 2: Prototype
-- [ ] Basic Discord bot integration
-- [ ] Simple AR prototype
-- [ ] First episode interactive demo
-- [ ] Community testing framework
-
-#### Phase 3: Production
-- [ ] Full 12-god system deployment
-- [ ] Advanced AR/VR features
-- [ ] Blockchain integration
-- [ ] Multi-platform distribution
 
 ---
 
@@ -251,4 +284,5 @@ A live, extensible canon—Perplexity co-authors the myth, entry by entry, ledge
 - **License:** [Choose appropriate open source license]
 
 *A Perplexity × Bika.ai collaborative project*
+
 *"Where smart contracts meet story contracts"*
